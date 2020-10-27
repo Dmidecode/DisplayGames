@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-lg-12 text-center" *ngFor="let rule of rules">
+        {{ rule.data }}
+    </div>
+    <br>
+    <div class="col-lg-12 text-center">
+        <button type="button" class="btn btn-primary" (click)="connectServeur()" *ngIf="!(player && player.id > 0)">Se
+            connecter</button>
+    </div>
+</div>
+
+<div class="row" *ngIf="player.id > 0">
+    <div class="col-lg-12 text-center">
+        Votre id de joueur est: <b>{{ player.id }}</b>
+    </div>
+</div>
+
+<div class="row" *ngIf="gameReady">
+    <div class="col-lg-12 text-center">
+        Pour commencer à jouer choisissez une action
+    </div>
+    <div class="col-lg-4 text-center">
+        <button type="button" class="btn btn-primary" (click)="choosePierre()"
+            [disabled]="loadingPlayers">Pierre</button>
+    </div>
+    <div class="col-lg-4 text-center">
+        <button type="button" class="btn btn-success" (click)="chooseFeuille()"
+            [disabled]="loadingPlayers">Feuille</button>
+    </div>
+    <div class="col-lg-4 text-center">
+        <button type="button" class="btn btn-warning" (click)="chooseCiseaux()"
+            [disabled]="loadingPlayers">Ciseaux</button>
+    </div>
+</div>
+
+<div class="row" *ngIf="scoreReady">
+    <div class="col-lg-12 text-center">
+        <b [ngClass]="{'text-danger': player.win == -1, 'text-info': player.win == 0, 'text-success': player.win == 1 }">
+            Vous avez
+            <span [ngSwitch]="player.win">
+                <span *ngSwitchCase="-1">
+                    perdu
+                </span>
+                <span *ngSwitchCase="0">
+                    fait égalité 
+                </span>
+                <span *ngSwitchCase="1">
+                    gagné
+                </span>
+            </span>
+        </b>
+        <br>
+        Vous avez joué <b>{{ player.coup }}</b> - Votre adversaire a joué <b>{{ enemy.coup }}</b>
+        <br>
+
+        <b>{{ player.score }} à {{ enemy.score }}</b>
+    </div>
+</div>

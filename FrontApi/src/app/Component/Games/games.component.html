@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-lg-6" *ngFor="let game of games">
+        <div class="card text-center hand" style="width: 18rem;" routerLink="{{game.route}}">
+            <div class="card-body">
+                <h5 class="card-title">{{ game.nom }}</h5>
+                <p class="card-text">{{ game.description }} - {{ game.nbJoueurs }} joueur(s)</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+        </div>
+    </div>
+</div>
